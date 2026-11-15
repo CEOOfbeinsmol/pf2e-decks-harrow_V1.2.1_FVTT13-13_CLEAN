@@ -1,0 +1,19 @@
+<header class="reading-header flexrow">
+    <figure class="suit-icon">
+        <img id="suit-icon" src="{{document.img}}">
+    </figure>
+    <h1 class="title">
+        <input type="text" name="name" value="{{document.name}}">
+    </h1>
+    {{#if editable}}
+    <div class="control-buttons flexcol">
+        <button type="button" class="icon fa-solid fa-book-open" data-action="viewRules"
+                data-tooltip aria-label="{{localize "HARROW.ACTIONS.Rules"}}"></button>
+        <button type="button" class="icon fa-solid fa-cards"  data-action="viewDeck"
+                data-tooltip aria-label="{{localize "HARROW.ACTIONS.Deck"}}"></button>
+    </div>
+    {{/if}}
+    <select class="suit" id="{{rootId}}-suit" {{disabled suitLocked}} aria-label="{{localize "CARD.FIELDS.suit.label"}}">
+        {{selectOptions suits selected=suit blank="Choose Suit"}}
+    </select>
+</header>

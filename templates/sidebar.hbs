@@ -1,0 +1,25 @@
+<aside class="sidebar participants" data-droppable>
+    {{#each participants as |p|}}
+    <div class="participant" data-actor-id="{{p.actor.id}}">
+        <h3>{{p.actor.name}}</h3>
+        {{#if p.revealed}}
+        <figure class="subject card">
+            <img class="{{p.imgClass}}" src="{{p.img}}" style="--glowColor: {{p.color}}">
+            <figcaption>{{p.caption}}</figcaption>
+        </figure>
+        {{else}}
+        <div class="subject open{{#if p.canClick}} clickable{{/if}}"{{#if p.canClick}} data-action="controlCard"{{/if}}>
+            <span class="label">{{localize @root.participantCardText}}</span>
+        </div>
+        {{/if}}
+        {{#if @root.editable}}
+        <button type="button" class="icon fa-solid fa-minus" data-action="removeParticipant"
+                data-tooltip aria-label="{{localize "HARROW.RemoveParticipant"}}"></button>
+        {{/if}}
+    </div>
+    {{else}}
+    <div class="instructions">
+        <p>{{localize "HARROW.AddParticipantHint"}}</p>
+    </div>
+    {{/each}}
+</aside>

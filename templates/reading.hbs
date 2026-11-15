@@ -1,0 +1,49 @@
+<section class="reading scrollable">
+    {{#if suit}}
+    <div class="spread"{{#if hidden}} hidden{{/if}} data-droppable>
+    {{#each spread as |slot|}}
+
+        {{! Slotted Card }}
+        {{#if slot.hasCard}}
+        <div class="slot card" data-card-id="{{slot.cardId}}"
+             data-position="{{slot.position}}"{{#if @root.step.canDrawCard}}role="button" data-action="controlCard"{{/if}}
+             data-tooltip aria-label="{{slot.tooltip}}">
+            {{#if matchIcons.length}}
+            <div class="match-icons">
+            {{#each matchIcons as |match|}}
+                <i class="{{match.icon}}" data-tooltip="{{match.label}}"></i>
+            {{/each}}
+            </div>
+            {{/if}}
+            <img class="{{slot.imgClass}}" src="{{slot.img}}" style="--glowColor: {{slot.color}}">
+        </div>
+        {{else}}
+        <div class="slot open"
+             data-position="{{slot.position}}"{{#if step.canDrawCard}}role="button" data-action="controlCard"{{/if}}>
+            <label>{{slot.label}}</label>
+        </div>
+        {{/if}}
+    {{/each}}
+    </div>
+
+    {{! Overlay Card }}
+    {{#if overlay}}
+    <figure class="overlay">
+        {{#if overlay.matchIcons.length}}
+        <div class="match-icons">
+        {{#each overlay.matchIcons as |match|}}
+            <i class="{{match.icon}}" data-tooltip="{{match.label}}"></i>
+        {{/each}}
+        </div>
+        {{/if}}
+        <img src="{{overlay.img}}" data-action="hideOverlay" role="button">
+        <figcaption>{{overlay.tooltip}}</figcaption>
+    </figure>
+    {{/if}}
+
+    {{else}}
+    <div class="instructions">
+        <p>To begin a reading, add participant actors and choose the suit which best describes the nature of their inquiry.</p>
+    </div>
+    {{/if}}
+</section>

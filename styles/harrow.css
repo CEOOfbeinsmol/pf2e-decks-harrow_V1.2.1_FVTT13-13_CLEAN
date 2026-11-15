@@ -1,0 +1,583 @@
+@font-face {
+  font-family: "Taroca";
+  src: url(fonts/taroca.ttf) format('truetype');
+}
+@font-face {
+  font-family: "Gin";
+  src: url(fonts/gin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Good OT';
+  src: url(fonts/goodot.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Good OT Bold';
+  src: url(fonts/goodot-bold.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Good OT Italic';
+  src: url(fonts/goodot-italic.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Good OT Bold Italic';
+  src: url(fonts/goodot-bolditalic.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Good OT Cond';
+  src: url(fonts/goodot-cond.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Good OT Cond Bold';
+  src: url(fonts/goodot-condbold.otf) format('opentype');
+}
+:root {
+  --harrow-color-darkblue: #28348d;
+  --harrow-color-purple: rgba(170, 90, 240, 0.1);
+  --harrow-color-lightblue: rgba(0, 100, 255, 0.1);
+  --harrow-color-gold: #c2ae15bd;
+  --harrow-color-yellow: #efe59f;
+  --harrow-color-beige: #f9efe1;
+  --harrow-color-brown: #ceaf95;
+  --harrow-color-darkbrown: #413a33;
+  --harrow-color-orange: #f87200;
+  --harrow-font-h1: "Taroca", "Modesto Condensed", serif;
+  --harrow-font-body: "Good OT", "Signika", sans-serif;
+}
+.sheet.harrow-reading {
+  --card-height: min(calc(100vh / 5), calc(260px));
+  --card-ratio: 0.583627;
+  --sidebar-width: 180px;
+  --participant-height: 120px;
+  /* Seems to just make it too small?
+  &:not(.maximizing, .minimized, .minimizing) {
+    max-height: 768px;
+  }
+*/
+  /* -------------------------------------------- */
+  /*  Sheet Structure                             */
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+  /*  Header                                      */
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+  /*  Sidebar                                     */
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+  /*  Spread                                      */
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+  /*  Cards                                       */
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+  /*  Footer Controls                             */
+  /* -------------------------------------------- */
+}
+.sheet.harrow-reading .window-content {
+  background: url(assets/page.webp) round;
+  border-image: url(assets/frame.webp) 40 / 12px;
+  display: grid;
+  gap: 0;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  overflow: hidden;
+  padding: 1rem 1.5rem;
+}
+.sheet.harrow-reading .window-content button:not(:disabled) {
+  --button-background-color: var(--harrow-color-beige);
+  --button-border-color: var(--harrow-color-brown);
+}
+.sheet.harrow-reading .window-content button.icon {
+  --button-size: 2em;
+  font-size: var(--font-size-12);
+}
+.sheet.harrow-reading .reading-header,
+.sheet.harrow-reading .form-footer {
+  grid-column: 1 / span 2;
+}
+.sheet.harrow-reading .sidebar {
+  height: calc((3 * var(--card-height)) + 2rem);
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 1rem;
+  flex: 0 0 var(--sidebar-width);
+  padding-right: 0.5rem;
+  margin-right: -0.5rem;
+  overflow: hidden auto;
+  text-align: center;
+}
+.sheet.harrow-reading .reading {
+  position: relative;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+.sheet.harrow-reading .instructions {
+  margin: 1rem;
+  text-align: center;
+  color: #444;
+}
+.sheet.harrow-reading h2.section-title {
+  padding: 0 0 0.4rem;
+  margin: 0;
+  color: var(--harrow-color-darkblue);
+  border-bottom: 1px solid var(--color-border-light-tertiary);
+  text-align: center;
+}
+.sheet.harrow-reading .reading-header {
+  align-items: center;
+  gap: 0 0.5rem;
+}
+.sheet.harrow-reading .reading-header figure.suit-icon {
+  flex: 0 0 80px;
+  height: 100%;
+  margin: 0;
+  background: url(assets/ring.webp) no-repeat;
+  background-position: center;
+  background-size: 100px;
+  padding: 5px;
+}
+.sheet.harrow-reading .reading-header figure.suit-icon img {
+  border: none;
+  box-shadow: none;
+}
+.sheet.harrow-reading .reading-header h1.title {
+  position: relative;
+  flex: 2;
+  background-image: url("assets/header-left.webp"), url("assets/header-right.webp"), url("assets/header-mid.webp");
+  background-position: left center, right center, center;
+  background-size: contain;
+  background-repeat: no-repeat, no-repeat, round;
+  background-clip: padding-box, padding-box, content-box;
+  padding: 0 2rem;
+  margin: 0;
+  border-bottom: none;
+}
+.sheet.harrow-reading .reading-header h1.title input {
+  --input-focus-outline-color: transparent;
+  border: unset;
+  background: unset;
+  font: normal var(--font-size-28) "Taroca", "Signika", serif;
+  margin: 1rem auto;
+  height: 3rem;
+}
+.sheet.harrow-reading .reading-header div.control-buttons {
+  flex: none;
+  gap: 0.5rem;
+}
+.sheet.harrow-reading .reading-header select.suit {
+  height: 2.5rem;
+  flex: 0 0 150px;
+  font-size: var(--font-size-20);
+}
+.sheet.harrow-reading .reading-header select.suit:not(:disabled) {
+  --input-background-color: var(--harrow-color-beige);
+  --input-border-color: var(--harrow-color-brown);
+}
+.sheet.harrow-reading .sidebar {
+  padding-top: 1rem;
+}
+.sheet.harrow-reading .sidebar .participant {
+  position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-light-tertiary);
+}
+.sheet.harrow-reading .sidebar .participant:last-child {
+  border-bottom: none;
+}
+.sheet.harrow-reading .sidebar .participant h3 {
+  font: normal var(--font-size-18) "Taroca", "Signika", serif;
+  margin: 0;
+  border: none;
+}
+.sheet.harrow-reading .sidebar .participant .subject {
+  margin: 0.5rem auto;
+}
+.sheet.harrow-reading .sidebar .participant .subject img,
+.sheet.harrow-reading .sidebar .participant .subject.open {
+  height: var(--participant-height);
+  width: calc(var(--participant-height) * var(--card-ratio));
+}
+.sheet.harrow-reading .sidebar .participant .subject img.active {
+  border-color: var(--glowColor);
+  filter: drop-shadow(0 0 6px var(--glowColor));
+}
+.sheet.harrow-reading .sidebar .participant .subject figcaption {
+  font-family: var(--harrow-font-body);
+  font-weight: bold;
+}
+.sheet.harrow-reading .sidebar .participant button {
+  position: absolute;
+  left: 12px;
+  top: calc(50% - 12px);
+}
+.sheet.harrow-reading .spread {
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--card-height) * var(--card-ratio)));
+  grid-gap: 1rem;
+  margin: 0 auto;
+}
+.sheet.harrow-reading .spread.hidden {
+  display: none;
+}
+.sheet.harrow-reading .slot {
+  position: relative;
+  height: var(--card-height);
+  width: 100%;
+  margin: 0 auto;
+}
+.sheet.harrow-reading .slot.open {
+  padding: 1rem;
+  text-align: center;
+}
+.sheet.harrow-reading .slot img {
+  z-index: 0;
+  filter: drop-shadow(0 0 6px #000);
+}
+.sheet.harrow-reading .slot img.active {
+  border-color: var(--glowColor);
+  filter: drop-shadow(0 0 6px var(--glowColor));
+}
+.sheet.harrow-reading .overlay {
+  position: relative;
+  flex: 1;
+  margin: 0;
+}
+.sheet.harrow-reading .overlay img {
+  cursor: var(--cursor-pointer);
+  display: block;
+  height: calc(3 * var(--card-height));
+  margin: 0 auto;
+  filter: drop-shadow(0 0 6px #000);
+}
+.sheet.harrow-reading .overlay figcaption {
+  font-family: var(--harrow-font-h1);
+  font-size: var(--font-size-18);
+  font-weight: normal;
+  margin-top: 0.5rem;
+}
+.sheet.harrow-reading .match-icons {
+  position: absolute;
+  width: 100%;
+  top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: var(--font-size-24);
+  color: white;
+  text-shadow: 2px 2px #000;
+  z-index: 1;
+  cursor: help;
+}
+.sheet.harrow-reading .slot img,
+.sheet.harrow-reading .subject img {
+  height: 100%;
+  border: 2px solid #000;
+}
+.sheet.harrow-reading .slot .match-icons,
+.sheet.harrow-reading .subject .match-icons {
+  opacity: 60%;
+}
+.sheet.harrow-reading .slot[role=button],
+.sheet.harrow-reading .subject[role=button] {
+  cursor: var(--cursor-pointer);
+}
+.sheet.harrow-reading .slot[role=button]:hover,
+.sheet.harrow-reading .subject[role=button]:hover {
+  background: rgba(255, 255, 255, 0.4);
+  font-weight: bold;
+  border-color: #111;
+}
+.sheet.harrow-reading .slot[role=button]:hover img,
+.sheet.harrow-reading .subject[role=button]:hover img {
+  transform: scale(1.02);
+  transition: 0.25s ease;
+}
+.sheet.harrow-reading .slot[role=button]:hover .match-icons,
+.sheet.harrow-reading .subject[role=button]:hover .match-icons {
+  opacity: 100%;
+}
+.sheet.harrow-reading .slot.open,
+.sheet.harrow-reading .subject.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed #444;
+  border-radius: 12px;
+  transition: 0.25s;
+}
+.sheet.harrow-reading .slot.open label,
+.sheet.harrow-reading .subject.open label {
+  pointer-events: none;
+}
+.sheet.harrow-reading .form-footer {
+  gap: 0.5rem;
+}
+.sheet.harrow-reading .form-footer button.add-participant {
+  flex: 0 0 var(--sidebar-width);
+}
+.journal-entry.harrow {
+  /** Table of Contents */
+  /** Buttons & Links **/
+}
+.journal-entry.harrow .journal-entry-content {
+  border: 10px solid transparent;
+  border-image: url("assets/frame.webp") 40;
+  background: url("assets/page.webp");
+}
+.journal-entry.harrow .journal-entry-pages {
+  margin: 0;
+}
+.journal-entry.harrow .journal-entry-pages .scrollable {
+  padding: 1.5rem 1rem 0 1rem;
+}
+.journal-entry.harrow form.journal-header {
+  background-image: url("assets/header-left.webp"), url("assets/header-right.webp"), url("assets/header-mid.webp");
+  background-position: left center, right center, center;
+  background-size: contain;
+  background-repeat: no-repeat, no-repeat, round;
+  background-clip: padding-box, padding-box, content-box;
+  padding: 0 2rem;
+  margin: 0.25rem 0.25rem -0.5rem 0.25rem;
+  z-index: 1;
+}
+.journal-entry.harrow form.journal-header input {
+  height: 70px;
+  width: 100%;
+  margin: 1rem 0;
+  background: unset;
+  border: unset;
+  font-family: "Taroca", "Signika", serif;
+}
+.journal-entry.harrow .journal-entry-page h1,
+.journal-entry.harrow .journal-entry-page h2,
+.journal-entry.harrow .journal-entry-page h3 {
+  color: var(--harrow-color-darkblue);
+  border-bottom: 2px solid var(--harrow-color-darkblue);
+  text-indent: 0.2rem;
+  clear: both;
+  margin-bottom: 1rem;
+}
+.journal-entry.harrow .journal-entry-page h1 {
+  font-family: "Taroca", "Signika", serif;
+  font-size: 1.6rem;
+}
+.journal-entry.harrow .journal-entry-page h2 {
+  font-family: "Good OT Bold", "Signika", serif;
+  text-transform: Uppercase;
+  font-size: 1.35rem;
+}
+.journal-entry.harrow .journal-entry-page h3 {
+  font-family: "Good OT Bold", "Signika", serif;
+  font-size: 1.25rem;
+}
+.journal-entry.harrow .journal-page-content {
+  font-family: "Good OT", "Signika", serif;
+  font-size: 1rem;
+}
+.journal-entry.harrow .journal-page-content p {
+  text-align: justify;
+}
+.journal-entry.harrow .journal-page-content strong {
+  color: var(--harrow-color-darkblue);
+}
+.journal-entry.harrow .journal-page-content a.url {
+  color: var(--harrow-color-darkblue);
+  font-family: "Good OT Bold", "Signika", serif;
+}
+.journal-entry.harrow .journal-page-content .columns {
+  display: flex;
+  gap: 1.5rem;
+}
+.journal-entry.harrow .journal-page-content .columns .left {
+  order: 1;
+  flex: 1;
+}
+.journal-entry.harrow .journal-page-content .columns .right {
+  order: 2;
+  flex: none;
+  margin: 0;
+}
+.journal-entry.harrow .journal-page-content section.quote {
+  border-top: 1px solid var(--harrow-color-darkblue);
+  border-bottom: 1px solid var(--harrow-color-darkblue);
+  border-radius: 2px;
+  font-family: "Good OT Italic", "Signika", serif;
+  padding: 0.25rem 1rem;
+  margin: 1rem 0.5rem;
+  background-color: var(--harrow-color-lightblue);
+}
+.journal-entry.harrow .journal-page-content section.quote p.attribution {
+  font-family: "Good OT Bold", "Signika", serif;
+  text-align: right;
+  margin-bottom: 0;
+}
+.journal-entry.harrow .journal-page-content section.secret {
+  font-family: "Good OT Italic", "Signika", serif;
+  padding: 0.25rem 1rem;
+  margin: 1rem 0.5rem;
+  position: relative;
+  background-color: var(--harrow-color-purple);
+}
+.journal-entry.harrow .journal-page-content section.secret button {
+  float: right;
+  margin: 0.25rem 0.5rem;
+}
+.journal-entry.harrow .journal-page-content figure.right {
+  float: right;
+  margin-left: 1.2rem;
+}
+.journal-entry.harrow .journal-page-content figure.card.right {
+  width: 260px;
+}
+.journal-entry.harrow .journal-page-content figure.card:hover img {
+  transform: scale(1.02);
+  transition: 0.25s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+.journal-entry.harrow .journal-page-content table {
+  width: 80%;
+  margin: 1rem auto;
+}
+.journal-entry.harrow .journal-page-content table img {
+  vertical-align: middle;
+  height: 60px;
+  width: 60px;
+}
+.journal-entry.harrow .journal-page-content table tr {
+  line-height: 2rem;
+}
+.journal-entry.harrow .journal-page-content table tr td {
+  text-align: center;
+  font-size: 1rem;
+}
+.journal-entry.harrow aside.journal-sidebar {
+  width: 280px;
+  border: 10px solid transparent;
+  border-image: url(assets/frame.webp) 40;
+}
+.journal-entry.harrow aside.journal-sidebar.collapsed {
+  flex-basis: 60px;
+}
+.journal-entry.harrow aside.journal-sidebar:not(.collapsed) .pages-list .page-heading .page-number {
+  color: transparent;
+}
+.journal-entry.harrow aside.journal-sidebar:not(.collapsed) .active span.page-number {
+  background-image: url(assets/pointer.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.journal-entry.harrow aside.journal-sidebar:not(.collapsed) .active + .active span.page-number {
+  background-image: unset;
+}
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable {
+  padding: 0 0.5rem;
+}
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item {
+  border: unset;
+  font-family: "Good OT", "Signika", serif;
+}
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item.active {
+  color: var(--harrow-color-yellow);
+}
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item[data-page-id="MZWXVmdCqqGWmXdv"]::before,
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item[data-page-id="4jHapQzzhpA7b1qY"]::before,
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item[data-page-id="3C45bKjYGNx18oL2"]::before,
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item[data-page-id="lJpZoLmTjJkUEW7g"]::before,
+.journal-entry.harrow aside.journal-sidebar ol.directory-list.scrollable li.directory-item[data-page-id="RkMdAXybxpA38BnN"]::before {
+  content: "";
+  background: url(assets/divider.webp) no-repeat;
+  background-size: contain;
+  background-position: center;
+  top: 0;
+  width: 100%;
+  height: 1rem;
+  margin: 0.25rem 0;
+}
+.journal-entry.harrow button,
+.journal-entry.harrow a.content-link {
+  border: 1px solid var(--harrow-color-brown);
+  background: var(--harrow-color-beige);
+  color: black;
+  border-radius: 3px;
+}
+.journal-entry.harrow button:hover,
+.journal-entry.harrow a.content-link:hover,
+.journal-entry.harrow .page-title:hover {
+  text-shadow: 0 0 8px var(--harrow-color-lightblue);
+}
+.journal-entry.harrow .action-buttons {
+  justify-content: center;
+}
+.harrow.deck .window-content {
+  border: 12px solid transparent;
+  border-image: url(assets/frame.webp) 40;
+  background: url(assets/page.webp) round;
+  color: black;
+}
+.harrow.deck .window-content header.sheet-header {
+  gap: 0.5rem;
+  min-height: 5rem;
+  padding: 0 2rem;
+}
+.harrow.deck .window-content header.sheet-header img {
+  height: 5rem;
+}
+.harrow.deck .window-content header.sheet-header input {
+  --input-height: 5rem;
+  --input-border-color: transparent;
+  --input-focus-outline-color: transparent;
+  --input-text-color: var(--harrow-color-darkblue);
+  background-image: url("assets/header-left.webp"), url("assets/header-right.webp"), url("assets/header-mid.webp");
+  background-position: left center, right center, center;
+  background-size: contain;
+  background-repeat: no-repeat, no-repeat, round;
+  background-clip: padding-box, padding-box, content-box;
+  font-family: "Taroca", "Signika", serif;
+  padding: 0 2.5rem;
+}
+.harrow.deck .window-content nav.sheet-tabs {
+  border-top: 1px solid var(--harrow-color-brown);
+  border-bottom: 1px solid var(--harrow-color-brown);
+  background: var(--harrow-color-beige);
+}
+.harrow.deck .window-content header.cards-header {
+  border: 6px solid transparent;
+  background: var(--harrow-color-darkblue);
+  color: var(--color-light-1);
+}
+.harrow.deck .window-content header.cards-header a {
+  color: var(--color-light-1);
+}
+.harrow.deck .window-content ol.cards {
+  max-height: 560px;
+}
+.harrow.deck .window-content li button:not(:disabled),
+.harrow.deck .window-content footer button:not(:disabled) {
+  --button-border-color: var(--harrow-color-brown);
+  --button-background-color: var(--harrow-color-beige);
+}
+.harrow.adventure-importer .window-content {
+  border: 12px solid transparent;
+  border-image: url(assets/frame.webp) 40;
+  background: url(assets/page.webp) round;
+}
+.harrow.adventure-importer .window-content button {
+  --button-border-color: var(--harrow-color-brown);
+  --button-background-color: var(--harrow-color-beige);
+}
+.harrow.adventure-importer .window-content h1,
+.harrow.adventure-importer .window-content h2 {
+  font-family: var(--harrow-font-h1);
+  color: var(--harrow-color-darkblue);
+  border-color: var(--harrow-color-darkblue);
+}
+.harrow.adventure-importer .window-content p,
+.harrow.adventure-importer .window-content label {
+  font-family: var(--harrow-font-body);
+}
