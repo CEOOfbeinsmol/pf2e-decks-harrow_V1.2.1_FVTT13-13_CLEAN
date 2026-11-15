@@ -1,0 +1,66 @@
+{
+  "id": "pf2e-decks-harrow",
+  "version": "1.2.1",
+  "title": "Pathfinder: Harrow",
+  "description": "<p>Divine your destiny with the Pathfinder Harrow Deck, the legendary fortune-telling cards of Pathfinder’s Age of Lost Omens setting!</p>",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Andrew Clayton",
+      "discord": "@Atropos#3814",
+      "url": "https://foundryvtt.com",
+      "flags": {}
+    },
+    {
+      "name": "Shane Martland",
+      "discord": "Anathema#3668",
+      "url": "https://foundryvtt.com",
+      "flags": {}
+    },
+    {
+      "name": "Viviane Charlier",
+      "discord": "Cora#0642",
+      "url": "https://foundryvtt.com",
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "path": "lang/en.json",
+      "name": "en",
+      "flags": {}
+    }
+  ],
+  "packs": [
+    {
+      "name": "harrow",
+      "label": "Harrow Deck",
+      "type": "Adventure",
+      "path": "packs/harrow",
+      "banner": "modules/pf2e-decks-harrow/assets/journals/hd-banner.webp",
+      "private": false,
+      "flags": {}
+    }
+  ],
+  "media": [
+    {
+      "type": "setup",
+      "caption": "Harrow Deck",
+      "thumbnail": "modules/pf2e-decks-harrow/assets/journals/hd-thumb.webp"
+    }
+  ],
+  "esmodules": [
+    "harrow.mjs"
+  ],
+  "styles": [
+    "styles/harrow.css"
+  ],
+  "socket": true,
+  "manifest": "",
+  "protected": false,
+  "date": "202506242008"
+}
